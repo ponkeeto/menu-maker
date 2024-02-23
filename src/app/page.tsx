@@ -1,6 +1,5 @@
 import styles from "./page.module.css";
-import { MenuCard } from "@/components/menu-card";
-import { Title } from "@/components/title";
+import { MenuCard, Title } from "../components";
 
 export default function Home() {
   return (
