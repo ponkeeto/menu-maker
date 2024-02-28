@@ -1,9 +1,12 @@
-'use client'
-import { useAppSelector } from "@/redux/hooks"
-import { MenuCard } from "."
+"use client";
+import { useAppSelector } from "@/redux/hooks";
+import { MenuCard } from ".";
+import { Category } from "@/lib/types";
 
-export const Cards = () => {
-    const cards = useAppSelector((state) => state.cards.cards)
+export const Cards = ({ category }: { category: Category }) => {
+  const cards = useAppSelector((state) => state.cards.cards);
 
-    return cards.map((card) => <MenuCard key={card.id} info={card} />)
-}
+  return cards
+    .filter((card) => card.category === category)
+    .map((card) => <MenuCard key={card.id} info={card} />);
+};

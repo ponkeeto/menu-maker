@@ -1,62 +1,37 @@
 import styles from "./page.module.css";
-import { Cards, Title } from "../components";
+import { AddItem, AddItemModal, Cards, Title } from "../components";
+import { Container, Grid, Typography } from "@mui/material";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <Container className={styles.main}>
       <Title />
-      <div className={styles.grid}>
-        <Cards />
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Typography>Appetizers</Typography>
+      <Grid container className={styles.grid}>
+        <Cards category="appetizer" />
+        <AddItem category="appetizer" />
+      </Grid>
+      <Typography>Entrees</Typography>
+      <Grid className={styles.grid}>
+        <Cards category="entree" />
+        <AddItem category="entree" />
+      </Grid>
+      <Typography>Sides</Typography>
+      <Grid className={styles.grid}>
+        <Cards category="side" />
+        <AddItem category="side" />
+      </Grid>
+      <Typography>Desserts</Typography>
+      <Grid className={styles.grid}>
+        <Cards category="dessert" />
+        <AddItem category="dessert" />
+      </Grid>
+      <Typography>Beverages</Typography>
+      <Grid className={styles.grid}>
+        <Cards category="beverage" />
+        <AddItem category="beverage" />
+      </Grid>
+      <AddItemModal />
+    </Container>
   );
 }
