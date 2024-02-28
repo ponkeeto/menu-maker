@@ -1,19 +1,5 @@
+import { cardState, itemsState } from "@/lib/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface cardState {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  cost: number;
-  options: string[];
-  stock: number;
-}
-
-export interface itemsState {
-  count: number;
-  cards: cardState[];
-}
 
 const initialState: itemsState = {
   count: 0,
@@ -21,7 +7,7 @@ const initialState: itemsState = {
     {
       id: 0,
       name: "French Fries",
-      category: "Sides",
+      category: "side",
       price: 15,
       cost: 8,
       options: ["small", "medium", "large"],
