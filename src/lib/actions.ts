@@ -1,19 +1,17 @@
-import { getDatabase, ref, set, get, remove, onValue } from "firebase/database";
+import { getDatabase, ref, set, get, remove } from "firebase/database";
 import { cardState } from "./types";
 import { app } from "./firebase-config";
 
-export const addCardFirebase = async (card: cardState) => {
-  const db = getDatabase(app);
+const db = getDatabase(app);
 
+const addCardFirebase = async (card: cardState) => {
   const newCardRef = ref(db, "cards/" + card.id);
   set(newCardRef, card)
     .then(() => console.log("201"))
     .catch((err) => console.log(err));
 };
 
-export const getCardsFirebase = async () => {
-  const db = getDatabase(app);
-
+const getCardsFirebase = async () => {
   const dbRef = ref(db, "cards/");
   const snapshot = await get(dbRef);
   if (snapshot.exists()) {
@@ -24,11 +22,11 @@ export const getCardsFirebase = async () => {
   }
 };
 
-export const deleteFromFirebase = async (id: number) => {
-  const db = getDatabase(app);
-
+const deleteFromFirebase = async (id: number) => {
   const dbRef = ref(db, `cards/${id}`);
   remove(dbRef)
     .then(() => console.log("204"))
     .catch((err) => console.log(err));
 };
+
+export { addCardFirebase, getCardsFirebase, deleteFromFirebase };
