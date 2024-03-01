@@ -19,4 +19,6 @@ export type OpenType = "new" | "edit" | "close";
 
 export interface ToggleState {
   open: OpenType;
+  category?: Category;
+  id?: number | null;
 }

@@ -6,27 +6,37 @@ export default function Home() {
   return (
     <Container className={styles.main}>
       <Title />
-      <Typography>Appetizers</Typography>
+      <Typography variant="h4" gutterBottom margin={2}>
+        Appetizers
+      </Typography>
       <Grid container className={styles.grid}>
         <Cards category="appetizer" />
         <AddItem category="appetizer" />
       </Grid>
-      <Typography>Entrees</Typography>
+      <Typography variant="h4" gutterBottom margin={2}>
+        Entrees
+      </Typography>
       <Grid className={styles.grid}>
         <Cards category="entree" />
         <AddItem category="entree" />
       </Grid>
-      <Typography>Sides</Typography>
+      <Typography variant="h4" gutterBottom margin={2}>
+        Sides
+      </Typography>
       <Grid className={styles.grid}>
         <Cards category="side" />
         <AddItem category="side" />
       </Grid>
-      <Typography>Desserts</Typography>
+      <Typography variant="h4" gutterBottom margin={2}>
+        Desserts
+      </Typography>
       <Grid className={styles.grid}>
         <Cards category="dessert" />
         <AddItem category="dessert" />
       </Grid>
-      <Typography>Beverages</Typography>
+      <Typography variant="h4" gutterBottom margin={2}>
+        Beverages
+      </Typography>
       <Grid className={styles.grid}>
         <Cards category="beverage" />
         <AddItem category="beverage" />
