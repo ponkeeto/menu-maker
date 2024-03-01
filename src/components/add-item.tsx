@@ -10,10 +10,12 @@ export const AddItem = ({ category }: { category: Category }) => {
 
   return (
     <Button
-      onClick={() => dispatch(toggleState("new"))}
+      onClick={() =>
+        dispatch(toggleState({ open: "new", category: category, id: null }))
+      }
       className={styles.card}
     >
-      <Typography>+</Typography>
+      <Typography variant="h5">Add new {category}</Typography>
     </Button>
   );
 };

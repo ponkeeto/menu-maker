@@ -5,12 +5,17 @@ import { toggleState } from "@/redux/slices/toggleSlice";
 import { Button, Typography } from "@mui/material";
 
 export const MenuCard = (props: { info: cardState }) => {
-  const { name, category, price, cost, options, stock } = props.info;
-  const dispatch = useAppDispatch()
+  const { id, name, category, price, cost, options, stock } = props.info;
+  const dispatch = useAppDispatch();
 
   return (
-    <Button className={styles.card} onClick={() => dispatch(toggleState('edit'))}>
-      <Typography>{name}</Typography>
+    <Button
+      className={styles.card}
+      onClick={() =>
+        dispatch(toggleState({ open: "edit", category: category, id: id }))
+      }
+    >
+      <Typography variant="h5">{name}</Typography>
       <Typography>Price: {price}</Typography>
       <Typography>Cost: {cost}</Typography>
       <Typography>Options: {options.length}</Typography>
