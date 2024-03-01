@@ -1,21 +1,23 @@
+import { getCardsFirebase } from "@/lib/actions";
 import { cardState, itemsState } from "@/lib/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Define Initial State
 const initialState: itemsState = {
   count: 0,
-  cards: [
-    {
-      id: 0,
-      name: "French Fries",
-      category: "side",
-      price: 15,
-      cost: 8,
-      options: ["small", "medium", "large"],
-      stock: 100,
-    },
-  ],
+  cards: [],
 };
 
+// Define Async Functions linked to Firebase
+export const getCardsFromFirebase = createAsyncThunk(
+  "cards/getCards",
+  async () => {
+    const res = await getCardsFirebase();
+    return res as cardState[];
+  }
+);
+
+// Define the Reducer
 const cardsSlice = createSlice({
   name: "cards",
   initialState,
@@ -30,8 +32,21 @@ const cardsSlice = createSlice({
     removeCard: (state, action: PayloadAction<number>) => {
       state.cards = state.cards.filter((card) => card.id !== action.payload);
     },
+    addCount: (state) => {
+      state.count++;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(
+        getCardsFromFirebase.fulfilled,
+        (state, action: PayloadAction<cardState[]>) => {
+          state.cards = action.payload;
+          state.count = action.payload.length;
+        }
+      )
   },
 });
 
-export const { addCard, saveCard, removeCard } = cardsSlice.actions;
+export const { addCard, saveCard, removeCard, addCount } = cardsSlice.actions;
 export default cardsSlice.reducer;
